@@ -1,14 +1,21 @@
 <template>
-  <div class="schedule">
-      Schedule
-  </div>
+  <div>
+    <div v-for="(games, date) in schedule" :key="date">
+        {{ date }}:
+        <div v-for="(value, key, index) in games" :key="index">
+           {{ value.home }} @ {{ value.home }}  
+        </div>
+    </div>
+</div>
 </template>
 
 <script>
 export default {
     name: 'Schedule',
-    props: {
-        msg: String
+    computed: {
+        schedule () {
+            return this.$store.state.schedule
+        }
     },
     mounted() {
         this.$store.dispatch('LOAD_SCHEDULE')
