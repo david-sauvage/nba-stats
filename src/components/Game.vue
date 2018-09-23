@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ game.home }} @ {{ game.home }}  
+    {{ awayTeam.fullName }} @ {{ homeTeam.fullName }}  
   </div>
 </template>
 
@@ -8,6 +8,18 @@
 export default {
     name: 'Game',
     props: ['game'],
+    computed: {
+        homeTeam () {
+            return this.$store.state.teams.find((team) => {
+                return team.teamId === this.game.home
+            });
+        },
+        awayTeam () {
+            return this.$store.state.teams.find((team) => {
+                return team.teamId === this.game.visitor
+            });
+        }
+    },
 }
 </script>
 
