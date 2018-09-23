@@ -19,6 +19,7 @@ export default {
     },
     mounted() {
         this.$store.dispatch('LOAD_SCHEDULE')
+        this.$store.dispatch('LOAD_TEAMS')
     }
 
   
