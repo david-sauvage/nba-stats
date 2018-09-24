@@ -12,12 +12,12 @@ export default {
         homeTeam () {
             return this.$store.state.teams.find((team) => {
                 return team.teamId === this.game.home
-            });
+            })
         },
         awayTeam () {
             return this.$store.state.teams.find((team) => {
                 return team.teamId === this.game.visitor
-            });
+            })
         }
     },
 }
