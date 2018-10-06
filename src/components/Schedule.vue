@@ -1,10 +1,33 @@
 <template>
   <div v-if="isDataReady">
-    <div v-for="(games, date) in schedule" :key="date">
-        {{ date }}:
-        <div v-for="(game, key, index) in games" :key="index">
-           <Game :game="game"/>
-        </div>
+
+    <v-flex xs12 sm6 md4>
+      <v-menu
+        ref="menuForDataPicker"
+        :close-on-content-click="false"
+        v-model="showMenuForDataPicker"
+        :nudge-right="40"
+        :return-value.sync="date"
+        lazy
+        transition="scale-transition"
+        offset-y
+        full-width
+        min-width="290px"
+      >
+        <v-text-field
+          slot="activator"
+          v-model="chosenDate"
+          label="Date of games"
+          prepend-icon="event"
+          readonly
+        ></v-text-field>
+        <v-date-picker v-model="chosenDate" @input="$refs.menuForDataPicker.save(chosenDate)"></v-date-picker>
+      </v-menu>
+    </v-flex>
+
+
+    <div v-for="(game, index) in schedule" :key="index">
+        <Game :game="game"/>
     </div>
 </div>
 </template>
@@ -22,15 +45,18 @@ export default {
         this.$store.dispatch('LOAD_TEAMS')
     },
     computed: {
-        schedule () {
-            return this.$store.state.schedule
-        },
         isDataReady () {
             return this.$store.state.schedule != null
                  && this.$store.state.teams != null
+        },
+        schedule () {
+            return this.$store.state.schedule[this.chosenDate.replace(/[-]+/g, '')]
         }
-    }
-   
+    },
+    data: () => ({
+      chosenDate: new Date().toISOString().slice(0, 10),
+      showMenuForDataPicker: false
+    })
 
   
 }
