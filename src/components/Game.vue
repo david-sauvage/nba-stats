@@ -1,13 +1,18 @@
 <template>
   <div>
-    {{ awayTeam.fullName }} @ {{ homeTeam.fullName }}  
+    <Team :team="awayTeam"/> @ <Team :team="homeTeam"/>
   </div>
 </template>
 
 <script>
+import Team from './Team.vue'
+
 export default {
     name: 'Game',
     props: ['game'],
+    components: {
+        Team
+    },
     computed: {
         homeTeam () {
             return this.$store.state.teams.find((team) => {
