@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <v-layout row wrap>
     <Team :team="awayTeam"/> @ <Team :team="homeTeam"/>
-  </div>
+  </v-layout>
 </template>
 
 <script>
