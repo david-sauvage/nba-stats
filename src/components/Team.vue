@@ -1,13 +1,24 @@
 <template>
   <div>
+    <div>
+    <img :src="getLogo()"/>
+    </div>
+    <div>
     {{ team.fullName }}
+    </div>
   </div>
 </template>
 
 <script>
 export default {
     name: 'Team',
-    props: ['team']
+    props: ['team'],
+    methods: {
+      getLogo: function () {
+        var images = require.context('../assets/team-logos', false, /\.svg$/)
+        return images('./' + this.team.tricode + ".svg")
+      }
+    }
 }
 </script>
 

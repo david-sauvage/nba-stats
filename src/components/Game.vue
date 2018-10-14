@@ -1,5 +1,5 @@
 <template>
-  <v-layout row wrap>
+  <v-layout row wrap align-center>
     <Team :team="awayTeam"/> @ <Team :team="homeTeam"/>
   </v-layout>
 </template>
