@@ -7,7 +7,6 @@
         :close-on-content-click="false"
         v-model="showMenuForDataPicker"
         :nudge-right="40"
-        :return-value.sync="date"
         lazy
         transition="scale-transition"
         offset-y

@@ -60,7 +60,7 @@ export default new Vuex.Store({
 
     LOAD_STATS: function ( {commit}, teams) {
       for(let t of teams) {
-        axios.get('./data/'+t.teamId+'.json')
+        axios.get('./data/players-'+t.teamId+'.json')
         .then(response => {
           var teamOverral = response.data.resultSets[0].rowSet
           var playersFromNbaSite = response.data.resultSets[1].rowSet
