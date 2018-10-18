@@ -1,7 +1,6 @@
 <template>
-    <v-container v-if="isDataReady" grid-list-md text-xs-center>
-
-    <v-flex xs12 sm6 md4>
+    <v-container v-if="isDataReady" fluid grid-list-xl >
+    <v-flex xs6 sm3 md2>
       <v-menu
         ref="menuForDataPicker"
         :close-on-content-click="false"
@@ -24,11 +23,9 @@
       </v-menu>
     </v-flex>
 
-
-    <div v-for="(game, index) in schedule" :key="index">
+    <v-flex v-for="(game, index) in schedule" :key="index">
         <Game :game="game"/>
-    </div>
-
+    </v-flex>
     </v-container>
 </template>
 

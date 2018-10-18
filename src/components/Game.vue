@@ -1,6 +1,15 @@
 <template>
-  <v-layout row wrap align-center>
-    <Team :team="awayTeam"/> @ <Team :team="homeTeam"/>
+  <v-layout row justify-center >
+    <v-flex xs4  >
+        <Team :team="awayTeam"/>  
+    </v-flex>
+    <v-flex xs1 >
+        @
+    </v-flex>
+    <v-flex xs4 >
+        <Team :team="homeTeam"/>
+    </v-flex>
+    
   </v-layout>
 </template>
 
