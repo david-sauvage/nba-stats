@@ -18,19 +18,19 @@ import Team from './Team.vue'
 
 export default {
     name: 'Game',
-    props: ['game'],
+    props: ['awayTeamId', 'homeTeamId'],
     components: {
         Team
     },
     computed: {
         homeTeam () {
             return this.$store.state.teams.find((team) => {
-                return team.teamId === this.game.home
+                return team.teamId === this.homeTeamId
             })
         },
         awayTeam () {
             return this.$store.state.teams.find((team) => {
-                return team.teamId === this.game.visitor
+                return team.teamId === this.awayTeamId
             })
         }
     },

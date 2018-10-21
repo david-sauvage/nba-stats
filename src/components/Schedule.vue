@@ -24,7 +24,9 @@
     </v-flex>
 
     <v-flex v-for="(game, index) in schedule" :key="index">
-        <Game :game="game"/>
+        <Game :awayTeamId="game.visitor" 
+              :homeTeamId="game.home"
+              @click.native="goToDetails(game.visitor, game.home)"/>
     </v-flex>
     </v-container>
 </template>
@@ -48,6 +50,11 @@ export default {
         },
         schedule () {
             return this.$store.state.schedule[this.chosenDate.replace(/[-]+/g, '')]
+        }
+    },
+    methods: {
+        goToDetails(visitorId, homeId) {
+             this.$router.push({ path: `/gameDetails/${visitorId}/${homeId}` })
         }
     },
     data: () => ({
