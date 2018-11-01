@@ -1,13 +1,13 @@
 <template>
   <v-card>
-    <div id="logo">
+    <div class="logo">
     <img  :src="getLogo()"/>
     </div>
-     <v-card-text>
-    <p class="text-md-center">
-      {{ team.fullName }} <br>
-      {{ team.stats.win }} / {{ team.stats.loss }}
-    </p>
+     <v-card-text class="team-presentation">
+      <p class="text-md-center">
+        {{ team.fullName }} <br>
+        {{ team.stats.win }} / {{ team.stats.loss }}
+      </p>
      </v-card-text>
   </v-card>
 </template>
@@ -27,7 +27,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#logo{
+.logo{
   text-align: center;
+}
+.team-presentation {
+  padding-top: 0;
 }
 </style>

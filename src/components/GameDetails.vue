@@ -48,11 +48,11 @@ export default {
         players () {
            let awayPlayers = this.$store.state.teams.find((team) => {
                 return team.teamId === this.$route.params.awayTeamId
-            }).stats.players
+            }).players
 
             let homePlayers = this.$store.state.teams.find((team) => {
                 return team.teamId === this.$route.params.homeTeamId
-            }).stats.players
+            }).players
 
             return [...awayPlayers, ...homePlayers]
         },

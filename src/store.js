@@ -4,6 +4,8 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
+
+
 export default new Vuex.Store({
   state: {
     schedule: null,
@@ -60,47 +62,61 @@ export default new Vuex.Store({
 
     LOAD_STATS: function ( {commit}, teams) {
       for(let t of teams) {
-        axios.get('./data/players-'+t.teamId+'.json')
-        .then(response => {
-          var teamOverral = response.data.resultSets[0].rowSet
-          var playersFromNbaSite = response.data.resultSets[1].rowSet
-          var players = []
-          for (var p of playersFromNbaSite) {
-            var player = {
-              name:p[2],
-              min:p[7],
-              pts:p[27],
-              fgm:p[8],
-              fga:p[9],
-              fg3m:p[11],
-              fg3a:p[12],
-              ftm:p[14],
-              fta:p[15],
-              oreb:p[17],
-              dreb:p[18],
-              ast:p[20],
-              to:p[21],
-              stl:p[22],
-              blck:p[23],
-              pf:p[25],
-              plus_minus:p[28]
-            }
-            players.push(player)
-          }
-          var stats = {
-            players: players, 
-            win:teamOverral[0][5],
-            loss:teamOverral[0][6], 
-          }
-          t.stats = stats
+        axios.all([
+          axios.get('./data/players-'+t.teamId+'.json'),
+          axios.get('./data/stats-'+t.teamId+'.json')
+        ])
+        .then(axios.spread((playersResponse, statsResponse) => {
+          var playersFromNbaSite = playersResponse.data.resultSets[1].rowSet
+          t.players = dataReader.createPlayers(playersFromNbaSite)
+
+          var teamOverral = statsResponse.data.resultSets[0].rowSet
+          t.stats = dataReader.createTeamStats(teamOverral)
           commit('enrichTeam', t)
-        })
+        }))
         .catch(function(error) {
             console.log(error);
         });
       }
     }
-
   }
 })
+
+var dataReader = {
+  createTeamStats(nbaData) {
+    return {
+      win:nbaData[0][4],
+      loss:nbaData[0][5],
+      off_rat:nbaData[0][9],
+      def_rat:nbaData[0][11],
+      pac:nbaData[0][24],
+    }
+  },
+  createPlayers(playersFromNbaSite) {
+    var players = []
+    for (var p of playersFromNbaSite) {
+      var player = {
+        name:p[2],
+        min:p[7],
+        pts:p[27],
+        fgm:p[8],
+        fga:p[9],
+        fg3m:p[11],
+        fg3a:p[12],
+        ftm:p[14],
+        fta:p[15],
+        oreb:p[17],
+        dreb:p[18],
+        ast:p[20],
+        to:p[21],
+        stl:p[22],
+        blck:p[23],
+        pf:p[25],
+        plus_minus:p[28]
+      }
+      players.push(player)
+    }
+    return players
+  }
+}
 
