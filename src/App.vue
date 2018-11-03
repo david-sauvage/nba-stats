@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app v-if="isDataReady">
     <v-toolbar
       app
       :clipped-left="clipped"  >
@@ -20,6 +20,16 @@ export default {
       clipped: false,
       title: 'NBA Schedule'
     }
-  }
+  },
+  beforeCreate () {
+    this.$store.dispatch('LOAD_SCHEDULE')
+    this.$store.dispatch('LOAD_TEAMS')
+  },
+  computed: {
+    isDataReady () {
+        return this.$store.state.schedule != null
+              && this.$store.state.teams != null
+    },
+  },
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <v-container v-if="isDataReady" fluid grid-list-xl >
+    <v-container fluid grid-list-xl >
     <v-flex xs6 sm3 md2>
       <v-menu
         ref="menuForDataPicker"
@@ -39,15 +39,7 @@ export default {
     components: {
         Game
     },
-    beforeCreate () {
-        this.$store.dispatch('LOAD_SCHEDULE')
-        this.$store.dispatch('LOAD_TEAMS')
-    },
     computed: {
-        isDataReady () {
-            return this.$store.state.schedule != null
-                 && this.$store.state.teams != null
-        },
         schedule () {
             return this.$store.state.schedule[this.chosenDate.replace(/[-]+/g, '')]
         }
