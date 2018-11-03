@@ -9,7 +9,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     schedule: null,
-    teams: null
+    teams: null,
+    chosenDate: new Date().toISOString().slice(0, 10)
   },
   mutations: {
     setSchedule(state, schedule) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     setTeams(state, teams) {
       state.teams = teams
     }, 
+    setChosenDate(state, date) {
+      state.chosenDate = date
+    },
     enrichTeam(state, team) {
       var idx = state.teams.findIndex((e) => e.teamId == team.teamId)
       state.teams[idx] = team

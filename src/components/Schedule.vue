@@ -42,6 +42,14 @@ export default {
     computed: {
         schedule () {
             return this.$store.state.schedule[this.chosenDate.replace(/[-]+/g, '')]
+        },
+        chosenDate: {
+            get () {
+                return this.$store.state.chosenDate
+            },
+            set (value) {
+                this.$store.commit('setChosenDate', value)
+            }
         }
     },
     methods: {
@@ -50,7 +58,6 @@ export default {
         }
     },
     data: () => ({
-      chosenDate: new Date().toISOString().slice(0, 10),
       showMenuForDataPicker: false
     })
 
