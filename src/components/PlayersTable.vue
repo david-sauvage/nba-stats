@@ -2,6 +2,7 @@
     <v-data-table
         :headers="headers"
         :items="enrichedPlayers"
+        :pagination.sync="pagination"
         hide-actions
         class="elevation-1">
 
@@ -25,17 +26,22 @@ export default {
     name: 'PlayersTable',
     props: ['players'],
     data: () => ({
-      headers: [
-          { text: 'Name', align: 'left', value: 'name' },
-          { text: 'Minutes', align: 'right', value: 'min' },
-          { text: 'Points', align: 'right', value: 'pts' },
-          { text: 'Rebounds', align: 'right', value: 'reb' }, 
-          { text: 'Assists', align: 'right', value: 'ast' },
-          { text: 'Blocks', align: 'right', value: 'blck' },
-          { text: 'Steals', align: 'right', value: 'stl' },
-          { text: 'TTFL', align: 'right', value: 'ttfl' },
-          { text: 'JDE', align: 'right', value: 'jde' }
+        headers: [
+            { text: 'Name', align: 'left', value: 'name' },
+            { text: 'Minutes', align: 'right', value: 'min' },
+            { text: 'Points', align: 'right', value: 'pts' },
+            { text: 'Rebounds', align: 'right', value: 'reb' }, 
+            { text: 'Assists', align: 'right', value: 'ast' },
+            { text: 'Blocks', align: 'right', value: 'blck' },
+            { text: 'Steals', align: 'right', value: 'stl' },
+            { text: 'TTFL', align: 'right', value: 'ttfl' },
+            { text: 'JDE', align: 'right', value: 'jde' }
         ],
+        pagination: {
+            'sortBy': 'ttfl',
+            'descending': true,
+            'rowsPerPage': -1
+            }
     }),
     computed: {
         enrichedPlayers() {
