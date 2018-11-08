@@ -1,5 +1,32 @@
 <template>
     <v-container  fluid grid-list-xl >
+        <v-flex xs12 sm6>
+            <v-select
+                v-model="selectedTeams"
+                :items="teams"
+                item-text="fullName"
+                :return-object="true"
+                chips
+                label="Franchise"
+                solo
+                multiple>
+
+                <v-list-tile
+                    slot="prepend-item"
+                    ripple
+                    @click="toggleSelectAllTeams">
+                    <v-list-tile-action>
+                        <v-icon :color="selectedTeams.length > 0 ? 'primary' : ''">{{ selectAllIcon }}</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-title>Select All</v-list-tile-title>
+                    </v-list-tile>
+                    <v-divider
+                    slot="prepend-item"
+                    class="mt-2"
+                    ></v-divider>
+
+            </v-select>
+        </v-flex>
         <PlayersTable :players="players"/>
     </v-container>
 </template>
@@ -12,10 +39,38 @@ export default {
     components: {
         PlayersTable
     },
+    data: () => ({
+      selectedTeams: []
+    }),
     computed: {
-        players () {
-            return Array.from(this.$store.state.teams, t => t.players).flat()
+        teams() {
+            return this.$store.state.teams
         },
+        players () {
+            return Array.from(this.selectedTeams, t => t.players).flat()
+        },
+        selectedAllTeams () {
+            return this.selectedTeams.length === this.teams.length
+        },
+        selectedSomeTeams () {
+            return this.selectedTeams.length > 0 && !this.selectedAllTeams
+        },
+        selectAllIcon () {
+            if (this.selectedAllTeams) return 'check_box'
+            if (this.selectedSomeTeams) return 'indeterminate_check_box'
+            return 'check_box_outline_blank'
+        }
+    },
+    methods: {
+      toggleSelectAllTeams () {
+        this.$nextTick(() => {
+            if (this.selectedAllTeams) {
+                this.selectedTeams = []
+            } else {
+                this.selectedTeams = this.teams.slice()
+            }
+        })
+      }
     }
 }
 </script>
