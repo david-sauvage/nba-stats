@@ -49,7 +49,13 @@ export default {
           icon: 'people',
           title: 'Players',
           route: "/players"
+        },
+         {
+          icon: 'supervised_user_circle',
+          title: 'Teams',
+          route: "/teams"
         }
+        
 
       ],
     }

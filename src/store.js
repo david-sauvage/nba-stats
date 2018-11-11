@@ -89,6 +89,7 @@ export default new Vuex.Store({
 var dataReader = {
   createTeamStats(nbaData) {
     return {
+      win_pct:nbaData[0][6],
       win:nbaData[0][4],
       loss:nbaData[0][5],
       off_rat:nbaData[0][9],
