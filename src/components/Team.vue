@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <div class="logo">
-    <img  :src="getLogo()"/>
+    <img  :src="team.logo"/>
     </div>
      <v-card-text class="team-presentation">
       <p class="text-md-center">
@@ -16,12 +16,6 @@
 export default {
     name: 'Team',
     props: ['team'],
-    methods: {
-      getLogo: function () {
-        var images = require.context('../assets/team-logos', false, /\.svg$/)
-        return images('./' + this.team.tricode + ".svg")
-      }
-    }
 }
 </script>
 

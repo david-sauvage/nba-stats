@@ -53,6 +53,7 @@ export default new Vuex.Store({
             var teams = [];
             for (var teamFromNbaSite of response.data.league.standard) {
               if (teamFromNbaSite.isNBAFranchise) {
+                  teamFromNbaSite.logo = dataReader.getLogo(teamFromNbaSite)
                   teams.push(teamFromNbaSite);
               }
             }
@@ -87,6 +88,10 @@ export default new Vuex.Store({
 })
 
 var dataReader = {
+  images: require.context('./assets/team-logos', false, /\.svg$/),
+  getLogo: function (team) {
+    return this.images('./' + team.tricode + ".svg")
+  },
   createTeamStats(nbaData) {
     return {
       win_pct:nbaData[0][6],
