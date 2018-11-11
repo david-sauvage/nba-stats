@@ -38,16 +38,16 @@ export default {
             { text: 'JDE', align: 'right', value: 'jde' }
         ],
         pagination: {
-            'sortBy': 'ttfl',
-            'descending': true,
-            'rowsPerPage': -1
-            }
+            sortBy: 'ttfl',
+            descending: true,
+            rowsPerPage: -1
+        }
     }),
     computed: {
         enrichedPlayers() {
             return this.players.map( p => {
                 return {...p, 
-                        reb:p.oreb+p.dreb,
+                        reb:(p.oreb+p.dreb).toFixed(1),
                         ttfl:this.calculateTTFL(p),
                         jde:this.calculateJDE(p)}
             })
