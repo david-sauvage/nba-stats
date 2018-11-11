@@ -3,7 +3,6 @@
         :headers="headers"
         :items="enrichedPlayers"
         :pagination.sync="pagination"
-        hide-actions
         class="elevation-1">
 
         <template slot="items" slot-scope="props">
@@ -40,7 +39,7 @@ export default {
         pagination: {
             sortBy: 'ttfl',
             descending: true,
-            rowsPerPage: -1
+            rowsPerPage: 25
         }
     }),
     computed: {
