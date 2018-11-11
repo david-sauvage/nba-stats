@@ -19,11 +19,25 @@
                         <v-icon :color="selectedTeams.length > 0 ? 'primary' : ''">{{ selectAllIcon }}</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-title>Select All</v-list-tile-title>
-                    </v-list-tile>
-                    <v-divider
+                </v-list-tile>
+                <v-divider
                     slot="prepend-item"
                     class="mt-2"
-                    ></v-divider>
+                ></v-divider>
+
+                <template
+                    slot="selection"
+                    slot-scope="{ item, index }"
+                    >
+                    <v-chip v-if="index <= 2">
+                        <span>{{ item.fullName }}</span>
+                    </v-chip>
+                    <span
+                        v-if="index === 3"
+                        class="grey--text caption"
+                    >(+{{ selectedTeams.length - 3 }} others)
+                    </span>
+                </template>
 
             </v-select>
         </v-flex>
