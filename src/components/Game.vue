@@ -1,5 +1,5 @@
 <template>
-  <v-layout row justify-center >
+  <v-layout row justify-center class="game">
     <v-flex xs4  >
         <Team :team="awayTeam"/>  
     </v-flex>
@@ -44,5 +44,8 @@ export default {
     align-self: center;
     text-align: center;
     font-size: x-large;
+}
+.game {
+    cursor: pointer;
 }
 </style>
