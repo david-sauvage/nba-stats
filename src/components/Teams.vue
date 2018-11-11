@@ -8,6 +8,7 @@
             class="elevation-1">
 
             <template slot="items" slot-scope="props">
+                <td><img class="logo" :src="props.item.logo"/></td>
                 <td>{{ props.item.fullName }}</td>
                 <td class="text-xs-right">{{ props.item.stats.win_pct }}</td>
                 <td class="text-xs-right">{{ props.item.stats.win }}</td>
@@ -26,6 +27,7 @@ export default {
     name: 'Teams',
     data: () => ({
         headers: [
+            { text: '', align: 'center', value: 'logo' , sortable:false},
             { text: 'Franchise', align: 'left', value: 'fullName' },
             { text: 'Win%', align: 'right', value: 'stats.win_pct' },
             { text: 'W', align: 'right', value: 'stats.win' },
@@ -50,5 +52,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.logo{
+    width: 40px;
+}
 </style>
