@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Game from './Game.vue'
-import PlayersTable from './PlayersTable.vue'
+import Game from '../components/Game.vue'
+import PlayersTable from '../components/PlayersTable.vue'
 
 export default {
     name: 'GameDetails',

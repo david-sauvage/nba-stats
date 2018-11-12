@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Schedule from './components/Schedule.vue'
-import Players from './components/Players.vue'
-import Teams from './components/Teams.vue'
-import GameDetails from './components/GameDetails.vue'
+import Schedule from './pages/Schedule.vue'
+import Players from './pages/Players.vue'
+import Teams from './pages/Teams.vue'
+import GameDetails from './pages/GameDetails.vue'
 
 Vue.use(Router)
 

@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import PlayersTable from './PlayersTable.vue'
+import PlayersTable from '../components/PlayersTable.vue'
 
 export default {
     name: 'Players',

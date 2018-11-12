@@ -4,8 +4,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import Schedule from './components/Schedule'
-
 
 Vue.config.productionTip = false
 
