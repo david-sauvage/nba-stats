@@ -1,12 +1,45 @@
 <template>
   <v-card>
-    <div class="logo">
-    <img  :src="team.logo"/>
-    </div>
+   
      <v-card-text class="team-presentation">
+        <div class="logo">
+    <img class="logo" :src="team.logo"/>
+    </div>
       <p class="text-md-center">
         {{ team.fullName }} <br>
         {{ team.stats.win }} / {{ team.stats.loss }}
+      </p>
+      <p class="text-md-center">
+        <v-tooltip bottom> 
+          <v-chip outline color="red darken-2" slot="activator" >
+            <v-avatar>
+              <v-icon>colorize</v-icon>
+            </v-avatar>
+            {{ team.stats.off_rat }}
+          </v-chip>
+          <span>Offensive Rating</span>
+        </v-tooltip>
+
+        <v-tooltip bottom> 
+          <v-chip outline color="indigo darken-2" slot="activator" >
+            <v-avatar>
+              <v-icon>security</v-icon>
+            </v-avatar>
+            {{ team.stats.def_rat }}
+          </v-chip>
+          <span>Defensive Rating</span>
+        </v-tooltip>
+
+
+        <v-tooltip bottom> 
+          <v-chip outline color="yellow darken-2" slot="activator" >
+            <v-avatar>
+              <v-icon>flash_on</v-icon>
+            </v-avatar>
+            {{ team.stats.pac }}
+          </v-chip>
+          <span>Pace</span>
+        </v-tooltip>
       </p>
      </v-card-text>
   </v-card>
