@@ -26,7 +26,8 @@
     <v-flex v-for="(game, index) in schedule" :key="index">
         <Game :awayTeamId="game.visitor" 
               :homeTeamId="game.home"
-              @click.native="goToDetails(game.visitor, game.home)"/>
+              @click.native="goToDetails(game.visitor, game.home)"
+              class="game"/>
     </v-flex>
     </v-container>
 </template>
@@ -67,5 +68,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.game {
+    cursor: pointer;
+}
 </style>

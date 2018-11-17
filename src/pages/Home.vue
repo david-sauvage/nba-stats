@@ -2,7 +2,7 @@
     <v-container fluid grid-list-xl >
         <div class="flex-container">
         <v-flex xs2 v-for="(game, index) in schedule" :key="index" >
-            <v-card class="card">
+            <v-card class="card" @click.native="goToDetails(game.visitor, game.home)" >
                 <img class="logo" :src="getTeam(game.visitor).logo"/> 
                 <img class="logo" :src="getTeam(game.home).logo"/>
             </v-card>
@@ -66,5 +66,6 @@ export default {
 .card {
     margin: 5px;
     text-align: center;
+    cursor: pointer;
 }
 </style>

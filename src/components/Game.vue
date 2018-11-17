@@ -45,7 +45,5 @@ export default {
     text-align: center;
     font-size: x-large;
 }
-.game {
-    cursor: pointer;
-}
+
 </style>
