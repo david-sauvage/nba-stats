@@ -3,7 +3,7 @@
    
      <v-card-text class="team-presentation">
         <div class="logo">
-    <img class="logo" :src="team.logo"/>
+    <img :src="team.logo"/>
     </div>
       <p class="text-md-center">
         {{ team.fullName }} <br>

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Home from './pages/Home.vue'
 import Schedule from './pages/Schedule.vue'
 import Players from './pages/Players.vue'
 import Teams from './pages/Teams.vue'
@@ -11,6 +12,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/schedule',
       name: 'Schedule',
       component: Schedule
     },

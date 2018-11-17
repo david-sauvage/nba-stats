@@ -41,9 +41,14 @@ export default {
       fixed: false,
       items: [
         {
+          icon: 'home',
+          title: 'Today',
+          route: "/"
+        },
+        {
           icon: 'date_range',
           title: 'Schedule',
-          route: "/"
+          route: "/schedule"
         },
         {
           icon: 'people',
