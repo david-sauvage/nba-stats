@@ -1,6 +1,6 @@
 <template>
   <v-card>
-   
+
      <v-card-text class="team-presentation">
         <div class="logo">
     <img :src="team.logo"/>
@@ -10,28 +10,27 @@
         {{ team.stats.win }} / {{ team.stats.loss }}
       </p>
       <p class="text-md-center">
-        <v-tooltip bottom> 
+        <v-tooltip bottom>
           <v-chip outline color="red darken-2" slot="activator" >
             <v-avatar>
               <v-icon>colorize</v-icon>
             </v-avatar>
-            {{ team.stats.off_rat }}
+            {{ team.stats.offRat }}
           </v-chip>
           <span>Offensive Rating</span>
         </v-tooltip>
 
-        <v-tooltip bottom> 
+        <v-tooltip bottom>
           <v-chip outline color="indigo darken-2" slot="activator" >
             <v-avatar>
               <v-icon>security</v-icon>
             </v-avatar>
-            {{ team.stats.def_rat }}
+            {{ team.stats.defRat }}
           </v-chip>
           <span>Defensive Rating</span>
         </v-tooltip>
 
-
-        <v-tooltip bottom> 
+        <v-tooltip bottom>
           <v-chip outline color="yellow darken-2" slot="activator" >
             <v-avatar>
               <v-icon>flash_on</v-icon>
@@ -47,8 +46,8 @@
 
 <script>
 export default {
-    name: 'Team',
-    props: ['team'],
+  name: 'Team',
+  props: ['team']
 }
 </script>
 

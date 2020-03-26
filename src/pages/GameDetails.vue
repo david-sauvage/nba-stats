@@ -10,23 +10,23 @@ import Game from '../components/Game.vue'
 import PlayersTable from '../components/PlayersTable.vue'
 
 export default {
-    name: 'GameDetails',
-    components: {
-        Game, PlayersTable
-    },
-    computed: {
-        players () {
-           let awayPlayers = this.$store.state.teams.find((team) => {
-                return team.teamId === this.$route.params.awayTeamId
-            }).players
+  name: 'GameDetails',
+  components: {
+    Game, PlayersTable
+  },
+  computed: {
+    players () {
+      const awayPlayers = this.$store.state.teams.find((team) => {
+        return team.teamId === this.$route.params.awayTeamId
+      }).players
 
-            let homePlayers = this.$store.state.teams.find((team) => {
-                return team.teamId === this.$route.params.homeTeamId
-            }).players
+      const homePlayers = this.$store.state.teams.find((team) => {
+        return team.teamId === this.$route.params.homeTeamId
+      }).players
 
-            return [...awayPlayers, ...homePlayers]
-        },
+      return [...awayPlayers, ...homePlayers]
     }
+  }
 }
 </script>
 

@@ -24,7 +24,7 @@
     </v-flex>
 
     <v-flex v-for="(game, index) in schedule" :key="index">
-        <Game :awayTeamId="game.visitor" 
+        <Game :awayTeamId="game.visitor"
               :homeTeamId="game.home"
               @click.native="goToDetails(game.visitor, game.home)"
               class="game"/>
@@ -36,33 +36,32 @@
 import Game from '../components/Game.vue'
 
 export default {
-    name: 'Schedule',
-    components: {
-        Game
+  name: 'Schedule',
+  components: {
+    Game
+  },
+  computed: {
+    schedule () {
+      return this.$store.state.schedule[this.chosenDate.replace(/[-]+/g, '')]
     },
-    computed: {
-        schedule () {
-            return this.$store.state.schedule[this.chosenDate.replace(/[-]+/g, '')]
-        },
-        chosenDate: {
-            get () {
-                return this.$store.state.chosenDate
-            },
-            set (value) {
-                this.$store.commit('setChosenDate', value)
-            }
-        }
-    },
-    methods: {
-        goToDetails(visitorId, homeId) {
-             this.$router.push({ path: `/gameDetails/${visitorId}/${homeId}` })
-        }
-    },
-    data: () => ({
-      showMenuForDataPicker: false
-    })
+    chosenDate: {
+      get () {
+        return this.$store.state.chosenDate
+      },
+      set (value) {
+        this.$store.commit('setChosenDate', value)
+      }
+    }
+  },
+  methods: {
+    goToDetails (visitorId, homeId) {
+      this.$router.push({ path: `/gameDetails/${visitorId}/${homeId}` })
+    }
+  },
+  data: () => ({
+    showMenuForDataPicker: false
+  })
 
-  
 }
 </script>
 

@@ -3,7 +3,7 @@
         <div class="flex-container">
         <v-flex xs2 v-for="(game, index) in schedule" :key="index" >
             <v-card class="card" @click.native="goToDetails(game.visitor, game.home)" >
-                <img class="logo" :src="getTeam(game.visitor).logo"/> 
+                <img class="logo" :src="getTeam(game.visitor).logo"/>
                 <img class="logo" :src="getTeam(game.home).logo"/>
             </v-card>
         </v-flex>
@@ -16,37 +16,37 @@
 import PlayersTable from '../components/PlayersTable.vue'
 
 export default {
-    name: 'Home',
-    components: {
-        PlayersTable
+  name: 'Home',
+  components: {
+    PlayersTable
+  },
+  computed: {
+    today () {
+      return new Date().toISOString().slice(0, 10)
     },
-    computed: {
-        today() {
-            return new Date().toISOString().slice(0, 10)
-        },
-        schedule () {
-            return this.$store.state.schedule[this.today.replace(/[-]+/g, '')]
-        },
-        players() {
-            let players = []
-            this.schedule.forEach(game => {
-                players = [...players, ...this.getTeam(game.visitor).players, ...this.getTeam(game.home).players]
-            });
-            return players
-        }
-       
+    schedule () {
+      return this.$store.state.schedule[this.today.replace(/[-]+/g, '')]
     },
-    methods: {
-        getTeam(teamId) {
-             return this.$store.state.teams.find((team) => {
-                return team.teamId === teamId
-            })
-        },
-        goToDetails(visitorId, homeId) {
-             this.$router.push({ path: `/gameDetails/${visitorId}/${homeId}` })
-        }
+    players () {
+      let players = []
+      this.schedule.forEach(game => {
+        players = [...players, ...this.getTeam(game.visitor).players, ...this.getTeam(game.home).players]
+      })
+      return players
+    }
+
+  },
+  methods: {
+    getTeam (teamId) {
+      return this.$store.state.teams.find((team) => {
+        return team.teamId === teamId
+      })
     },
-  
+    goToDetails (visitorId, homeId) {
+      this.$router.push({ path: `/gameDetails/${visitorId}/${homeId}` })
+    }
+  }
+
 }
 </script>
 

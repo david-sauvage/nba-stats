@@ -49,43 +49,43 @@
 import PlayersTable from '../components/PlayersTable.vue'
 
 export default {
-    name: 'Players',
-    components: {
-        PlayersTable
+  name: 'Players',
+  components: {
+    PlayersTable
+  },
+  data: () => ({
+    selectedTeams: []
+  }),
+  computed: {
+    teams () {
+      return this.$store.state.teams
     },
-    data: () => ({
-      selectedTeams: []
-    }),
-    computed: {
-        teams() {
-            return this.$store.state.teams
-        },
-        players () {
-            return Array.from(this.selectedTeams, t => t.players).flat()
-        },
-        selectedAllTeams () {
-            return this.selectedTeams.length === this.teams.length
-        },
-        selectedSomeTeams () {
-            return this.selectedTeams.length > 0 && !this.selectedAllTeams
-        },
-        selectAllIcon () {
-            if (this.selectedAllTeams) return 'check_box'
-            if (this.selectedSomeTeams) return 'indeterminate_check_box'
-            return 'check_box_outline_blank'
-        }
+    players () {
+      return Array.from(this.selectedTeams, t => t.players).flat()
     },
-    methods: {
-      toggleSelectAllTeams () {
-        this.$nextTick(() => {
-            if (this.selectedAllTeams) {
-                this.selectedTeams = []
-            } else {
-                this.selectedTeams = this.teams.slice()
-            }
-        })
-      }
+    selectedAllTeams () {
+      return this.selectedTeams.length === this.teams.length
+    },
+    selectedSomeTeams () {
+      return this.selectedTeams.length > 0 && !this.selectedAllTeams
+    },
+    selectAllIcon () {
+      if (this.selectedAllTeams) return 'check_box'
+      if (this.selectedSomeTeams) return 'indeterminate_check_box'
+      return 'check_box_outline_blank'
     }
+  },
+  methods: {
+    toggleSelectAllTeams () {
+      this.$nextTick(() => {
+        if (this.selectedAllTeams) {
+          this.selectedTeams = []
+        } else {
+          this.selectedTeams = this.teams.slice()
+        }
+      })
+    }
+  }
 }
 </script>
 

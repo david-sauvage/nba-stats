@@ -1,7 +1,7 @@
 <template>
   <v-layout row justify-center class="game">
     <v-flex xs4  >
-        <Team :team="awayTeam"/>  
+        <Team :team="awayTeam"/>
     </v-flex>
     <v-flex xs1 class="at-symbol" >
         @
@@ -9,7 +9,7 @@
     <v-flex xs4 >
         <Team :team="homeTeam"/>
     </v-flex>
-    
+
   </v-layout>
 </template>
 
@@ -17,23 +17,23 @@
 import Team from './Team.vue'
 
 export default {
-    name: 'Game',
-    props: ['awayTeamId', 'homeTeamId'],
-    components: {
-        Team
+  name: 'Game',
+  props: ['awayTeamId', 'homeTeamId'],
+  components: {
+    Team
+  },
+  computed: {
+    homeTeam () {
+      return this.$store.state.teams.find((team) => {
+        return team.teamId === this.homeTeamId
+      })
     },
-    computed: {
-        homeTeam () {
-            return this.$store.state.teams.find((team) => {
-                return team.teamId === this.homeTeamId
-            })
-        },
-        awayTeam () {
-            return this.$store.state.teams.find((team) => {
-                return team.teamId === this.awayTeamId
-            })
-        }
-    },
+    awayTeam () {
+      return this.$store.state.teams.find((team) => {
+        return team.teamId === this.awayTeamId
+      })
+    }
+  }
 }
 </script>
 

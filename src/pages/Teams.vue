@@ -10,11 +10,11 @@
             <template slot="items" slot-scope="props">
                 <td><img class="logo" :src="props.item.logo"/></td>
                 <td>{{ props.item.fullName }}</td>
-                <td class="text-xs-right">{{ props.item.stats.win_pct }}</td>
+                <td class="text-xs-right">{{ props.item.stats.winPct }}</td>
                 <td class="text-xs-right">{{ props.item.stats.win }}</td>
                 <td class="text-xs-right">{{ props.item.stats.loss }}</td>
-                <td class="text-xs-right">{{ props.item.stats.off_rat }}</td>
-                <td class="text-xs-right">{{ props.item.stats.def_rat }}</td>
+                <td class="text-xs-right">{{ props.item.stats.offRat }}</td>
+                <td class="text-xs-right">{{ props.item.stats.defRat }}</td>
                 <td class="text-xs-right">{{ props.item.stats.pac }}</td>
             </template>
         </v-data-table>
@@ -24,29 +24,29 @@
 <script>
 
 export default {
-    name: 'Teams',
-    data: () => ({
-        headers: [
-            { text: '', align: 'center', value: 'logo' , sortable:false},
-            { text: 'Franchise', align: 'left', value: 'fullName' },
-            { text: 'Win%', align: 'right', value: 'stats.win_pct' },
-            { text: 'W', align: 'right', value: 'stats.win' },
-            { text: 'L', align: 'right', value: 'stats.loss' }, 
-            { text: 'Offensive Rating', align: 'right', value: 'stats.off_rat' },
-            { text: 'Defensive Rating', align: 'right', value: 'stats.def_rat' },
-            { text: 'Pace', align: 'right', value: 'stats.pac' },
-        ],
-        pagination: {
-            sortBy: 'stats.win_pct',
-            descending: true,
-            rowsPerPage: -1
-            }
-    }),
-    computed: {
-        teams() {
-            return this.$store.state.teams
-        }
+  name: 'Teams',
+  data: () => ({
+    headers: [
+      { text: '', align: 'center', value: 'logo', sortable: false },
+      { text: 'Franchise', align: 'left', value: 'fullName' },
+      { text: 'Win%', align: 'right', value: 'stats.winPct' },
+      { text: 'W', align: 'right', value: 'stats.win' },
+      { text: 'L', align: 'right', value: 'stats.loss' },
+      { text: 'Offensive Rating', align: 'right', value: 'stats.off_rat' },
+      { text: 'Defensive Rating', align: 'right', value: 'stats.defRat' },
+      { text: 'Pace', align: 'right', value: 'stats.pac' }
+    ],
+    pagination: {
+      sortBy: 'stats.winPct',
+      descending: true,
+      rowsPerPage: -1
     }
+  }),
+  computed: {
+    teams () {
+      return this.$store.state.teams
+    }
+  }
 }
 </script>
 

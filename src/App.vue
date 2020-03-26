@@ -6,9 +6,9 @@
       fixed
       app >
       <v-list>
-        <v-list-tile 
+        <v-list-tile
           v-for="(item, i) in items"
-          :key="i" 
+          :key="i"
           :to=item.route>
           <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
@@ -43,26 +43,25 @@ export default {
         {
           icon: 'home',
           title: 'Today',
-          route: "/"
+          route: '/'
         },
         {
           icon: 'date_range',
           title: 'Schedule',
-          route: "/schedule"
+          route: '/schedule'
         },
         {
           icon: 'people',
           title: 'Players',
-          route: "/players"
+          route: '/players'
         },
-         {
+        {
           icon: 'supervised_user_circle',
           title: 'Teams',
-          route: "/teams"
+          route: '/teams'
         }
-        
 
-      ],
+      ]
     }
   },
   beforeCreate () {
@@ -71,9 +70,9 @@ export default {
   },
   computed: {
     isDataReady () {
-        return this.$store.state.schedule != null
-              && this.$store.state.teams != null
-    },
-  },
+      return this.$store.state.schedule != null &&
+              this.$store.state.teams != null
+    }
+  }
 }
 </script>
