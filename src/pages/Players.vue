@@ -11,15 +11,15 @@
                 solo
                 multiple>
 
-                <v-list-tile
+                <v-list-item
                     slot="prepend-item"
                     ripple
                     @click="toggleSelectAllTeams">
-                    <v-list-tile-action>
+                    <v-list-item-action>
                         <v-icon :color="selectedTeams.length > 0 ? 'primary' : ''">{{ selectAllIcon }}</v-icon>
-                    </v-list-tile-action>
-                    <v-list-tile-title>Select All</v-list-tile-title>
-                </v-list-tile>
+                    </v-list-item-action>
+                    <v-list-item-title>Select All</v-list-item-title>
+                </v-list-item>
                 <v-divider
                     slot="prepend-item"
                     class="mt-2"

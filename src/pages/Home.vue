@@ -22,7 +22,8 @@ export default {
   },
   computed: {
     today () {
-      return new Date().toISOString().slice(0, 10)
+      return new Date('2019-02-01T00:00:00').toISOString().slice(0, 10)
+      // return new Date().toISOString().slice(0, 10)
     },
     schedule () {
       return this.$store.state.schedule[this.today.replace(/[-]+/g, '')]

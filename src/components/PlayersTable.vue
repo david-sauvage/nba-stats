@@ -2,7 +2,9 @@
     <v-data-table
         :headers="headers"
         :items="enrichedPlayers"
-        :pagination.sync="pagination"
+        :items-per-page="25"
+        :sort-by.sync="sortBy"
+        :sort-desc.sync="sortDesc"
         class="elevation-1">
 
         <template slot="items" slot-scope="props">
@@ -36,11 +38,8 @@ export default {
       { text: 'TTFL', align: 'right', value: 'ttfl' },
       { text: 'JDE', align: 'right', value: 'jde' }
     ],
-    pagination: {
-      sortBy: 'ttfl',
-      descending: true,
-      rowsPerPage: 25
-    }
+    sortBy: 'ttfl',
+    sortDesc: true
   }),
   computed: {
     enrichedPlayers () {

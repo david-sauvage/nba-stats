@@ -11,32 +11,38 @@
       </p>
       <p class="text-md-center">
         <v-tooltip bottom>
-          <v-chip outline color="red darken-2" slot="activator" >
-            <v-avatar>
-              <v-icon>colorize</v-icon>
-            </v-avatar>
-            {{ team.stats.offRat }}
-          </v-chip>
+          <template v-slot:activator="{ on }">
+            <v-chip outlined color="red darken-2" v-on="on" >
+              <v-avatar>
+                <v-icon>colorize</v-icon>
+              </v-avatar>
+              {{ team.stats.offRat }}
+            </v-chip>
+          </template>
           <span>Offensive Rating</span>
         </v-tooltip>
 
         <v-tooltip bottom>
-          <v-chip outline color="indigo darken-2" slot="activator" >
-            <v-avatar>
-              <v-icon>security</v-icon>
-            </v-avatar>
-            {{ team.stats.defRat }}
-          </v-chip>
+          <template v-slot:activator="{ on }">
+            <v-chip outlined color="indigo darken-2" v-on="on" >
+              <v-avatar>
+                <v-icon>security</v-icon>
+              </v-avatar>
+              {{ team.stats.defRat }}
+            </v-chip>
+          </template>
           <span>Defensive Rating</span>
         </v-tooltip>
 
         <v-tooltip bottom>
-          <v-chip outline color="yellow darken-2" slot="activator" >
-            <v-avatar>
-              <v-icon>flash_on</v-icon>
-            </v-avatar>
-            {{ team.stats.pac }}
-          </v-chip>
+          <template v-slot:activator="{ on }">
+            <v-chip outlined color="yellow darken-2" v-on="on" >
+              <v-avatar>
+                <v-icon>flash_on</v-icon>
+              </v-avatar>
+              {{ team.stats.pac }}
+            </v-chip>
+          </template>
           <span>Pace</span>
         </v-tooltip>
       </p>
