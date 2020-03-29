@@ -1,5 +1,5 @@
 <template>
-    <v-container  fluid grid-list-xl >
+    <v-container  fluid >
         <Game :awayTeamId="$route.params.awayTeamId" :homeTeamId="$route.params.homeTeamId"/>
         <PlayersTable :players="players"/>
     </v-container>

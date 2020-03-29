@@ -1,5 +1,5 @@
 <template>
-    <v-container  fluid grid-list-xl >
+    <v-container  fluid>
         <v-data-table
             :headers="headers"
             :items="teams"

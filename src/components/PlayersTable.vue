@@ -6,18 +6,6 @@
         :sort-by.sync="sortBy"
         :sort-desc.sync="sortDesc"
         class="elevation-1">
-
-        <template slot="items" slot-scope="props">
-            <td>{{ props.item.name }}</td>
-            <td class="text-xs-right">{{ props.item.min }}</td>
-            <td class="text-xs-right">{{ props.item.pts }}</td>
-            <td class="text-xs-right">{{ props.item.reb }}</td>
-            <td class="text-xs-right">{{ props.item.ast }}</td>
-            <td class="text-xs-right">{{ props.item.blck }}</td>
-            <td class="text-xs-right">{{ props.item.stl }}</td>
-            <td class="text-xs-right">{{ props.item.ttfl }}</td>
-            <td class="text-xs-right">{{ props.item.jde }}</td>
-        </template>
     </v-data-table>
 </template>
 
