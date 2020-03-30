@@ -1,39 +1,39 @@
 <template>
-  <v-layout row justify-center class="game">
-    <v-flex xs4  >
-        <Team :team="awayTeam"/>  
-    </v-flex>
-    <v-flex xs1 class="at-symbol" >
+  <v-row  justify="center" class="game">
+    <v-col cols="4"  >
+        <Team :team="awayTeam"/>
+    </v-col>
+    <v-col cols="1" class="at-symbol" >
         @
-    </v-flex>
-    <v-flex xs4 >
+    </v-col>
+    <v-col cols="4" >
         <Team :team="homeTeam"/>
-    </v-flex>
-    
-  </v-layout>
+    </v-col>
+
+  </v-row>
 </template>
 
 <script>
 import Team from './Team.vue'
 
 export default {
-    name: 'Game',
-    props: ['awayTeamId', 'homeTeamId'],
-    components: {
-        Team
+  name: 'Game',
+  props: ['awayTeamId', 'homeTeamId'],
+  components: {
+    Team
+  },
+  computed: {
+    homeTeam () {
+      return this.$store.state.teams.find((team) => {
+        return team.teamId === this.homeTeamId
+      })
     },
-    computed: {
-        homeTeam () {
-            return this.$store.state.teams.find((team) => {
-                return team.teamId === this.homeTeamId
-            })
-        },
-        awayTeam () {
-            return this.$store.state.teams.find((team) => {
-                return team.teamId === this.awayTeamId
-            })
-        }
-    },
+    awayTeam () {
+      return this.$store.state.teams.find((team) => {
+        return team.teamId === this.awayTeamId
+      })
+    }
+  }
 }
 </script>
 

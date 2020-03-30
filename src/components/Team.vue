@@ -1,6 +1,6 @@
 <template>
   <v-card>
-   
+
      <v-card-text class="team-presentation">
         <div class="logo">
     <img :src="team.logo"/>
@@ -10,34 +10,39 @@
         {{ team.stats.win }} / {{ team.stats.loss }}
       </p>
       <p class="text-md-center">
-        <v-tooltip bottom> 
-          <v-chip outline color="red darken-2" slot="activator" >
-            <v-avatar>
-              <v-icon>colorize</v-icon>
-            </v-avatar>
-            {{ team.stats.off_rat }}
-          </v-chip>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <v-chip outlined color="red darken-2" v-on="on" >
+              <v-avatar>
+                <v-icon>colorize</v-icon>
+              </v-avatar>
+              {{ team.stats.offRat }}
+            </v-chip>
+          </template>
           <span>Offensive Rating</span>
         </v-tooltip>
 
-        <v-tooltip bottom> 
-          <v-chip outline color="indigo darken-2" slot="activator" >
-            <v-avatar>
-              <v-icon>security</v-icon>
-            </v-avatar>
-            {{ team.stats.def_rat }}
-          </v-chip>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <v-chip outlined color="indigo darken-2" v-on="on" >
+              <v-avatar>
+                <v-icon>security</v-icon>
+              </v-avatar>
+              {{ team.stats.defRat }}
+            </v-chip>
+          </template>
           <span>Defensive Rating</span>
         </v-tooltip>
 
-
-        <v-tooltip bottom> 
-          <v-chip outline color="yellow darken-2" slot="activator" >
-            <v-avatar>
-              <v-icon>flash_on</v-icon>
-            </v-avatar>
-            {{ team.stats.pac }}
-          </v-chip>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <v-chip outlined color="yellow darken-2" v-on="on" >
+              <v-avatar>
+                <v-icon>flash_on</v-icon>
+              </v-avatar>
+              {{ team.stats.pac }}
+            </v-chip>
+          </template>
           <span>Pace</span>
         </v-tooltip>
       </p>
@@ -47,8 +52,8 @@
 
 <script>
 export default {
-    name: 'Team',
-    props: ['team'],
+  name: 'Team',
+  props: ['team']
 }
 </script>
 
