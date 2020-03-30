@@ -5,6 +5,7 @@
             :items="teams"
             :sort-by.sync="sortBy"
             :sort-desc.sync="sortDesc"
+            :items-per-page="-1"
             hide-default-footer
             class="elevation-1">
             <template v-slot:item.logo="{ item }">
