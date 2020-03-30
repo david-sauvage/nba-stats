@@ -1,6 +1,6 @@
 <template>
-    <v-container  fluid grid-list-xl >
-        <v-flex xs12 sm6>
+    <v-container  fluid >
+        <v-col cols="12" sm="6">
             <v-select
                 v-model="selectedTeams"
                 :items="teams"
@@ -40,7 +40,7 @@
                 </template>
 
             </v-select>
-        </v-flex>
+        </v-col>
         <PlayersTable :players="players"/>
     </v-container>
 </template>

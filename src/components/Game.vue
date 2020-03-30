@@ -1,16 +1,16 @@
 <template>
-  <v-layout row justify-center class="game">
-    <v-flex xs4  >
+  <v-row  justify="center" class="game">
+    <v-col cols="4"  >
         <Team :team="awayTeam"/>
-    </v-flex>
-    <v-flex xs1 class="at-symbol" >
+    </v-col>
+    <v-col cols="1" class="at-symbol" >
         @
-    </v-flex>
-    <v-flex xs4 >
+    </v-col>
+    <v-col cols="4" >
         <Team :team="homeTeam"/>
-    </v-flex>
+    </v-col>
 
-  </v-layout>
+  </v-row>
 </template>
 
 <script>

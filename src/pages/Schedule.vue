@@ -1,6 +1,6 @@
 <template>
-    <v-container fluid grid-list-xl >
-    <v-flex xs6 sm3 md2>
+    <v-container fluid >
+    <v-col cols="6" sm="3" md="2">
         <v-menu
                 v-model="showMenuForDataPicker"
                 :close-on-content-click="false"
@@ -25,14 +25,14 @@
                     @input="fromDateMenu = false"
             ></v-date-picker>
         </v-menu>
-    </v-flex>
+    </v-col>
 
-    <v-flex v-for="(game, index) in schedule" :key="index">
+    <v-col v-for="(game, index) in schedule" :key="index">
         <Game :awayTeamId="game.visitor"
               :homeTeamId="game.home"
               @click.native="goToDetails(game.visitor, game.home)"
               class="game"/>
-    </v-flex>
+    </v-col>
     </v-container>
 </template>
 
