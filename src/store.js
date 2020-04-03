@@ -35,6 +35,7 @@ export default new Vuex.Store({
             if (!schedule[gameFromNbaSite.startDateEastern]) {
               schedule[gameFromNbaSite.startDateEastern] = []
             }
+
             var game = { home: gameFromNbaSite.hTeam.teamId, visitor: gameFromNbaSite.vTeam.teamId }
             schedule[gameFromNbaSite.startDateEastern].push(game)
           }
