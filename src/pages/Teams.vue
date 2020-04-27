@@ -9,7 +9,10 @@
             hide-default-footer
             class="elevation-1">
             <template v-slot:item.logo="{ item }">
-                <img class="logo" :src="item.logo"/>
+                <img class="logo" :src="item.team.officialLogoImageSrc"/>
+            </template>
+            <template v-slot:item.franchise="{ item }">
+                {{item.team.city}} {{item.team.name}}
             </template>
         </v-data-table>
     </v-container>
@@ -22,15 +25,14 @@ export default {
   data: () => ({
     headers: [
       { text: '', align: 'center', value: 'logo', sortable: false },
-      { text: 'Franchise', align: 'left', value: 'fullName' },
-      { text: 'Win%', align: 'right', value: 'stats.winPct' },
-      { text: 'W', align: 'right', value: 'stats.win' },
-      { text: 'L', align: 'right', value: 'stats.loss' },
-      { text: 'Offensive Rating', align: 'right', value: 'stats.offRat' },
-      { text: 'Defensive Rating', align: 'right', value: 'stats.defRat' },
-      { text: 'Pace', align: 'right', value: 'stats.pac' }
+      { text: 'Franchise', align: 'left', value: 'franchise' },
+      { text: 'Win%', align: 'right', value: 'stats.standings.winPct' },
+      { text: 'W', align: 'right', value: 'stats.standings.wins' },
+      { text: 'L', align: 'right', value: 'stats.standings.losses' },
+      { text: 'Off', align: 'right', value: 'stats.offense.ptsPerGame' },
+      { text: 'Def', align: 'right', value: 'stats.defense.ptsAgainstPerGame' }
     ],
-    sortBy: 'stats.winPct',
+    sortBy: 'stats.standings.winPct',
     sortDesc: true
   }),
   computed: {

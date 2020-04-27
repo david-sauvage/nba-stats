@@ -1,11 +1,11 @@
 <template>
 
-    <v-container fluid v-if="isScheduleFetched">
+    <v-container fluid>
         <div class="flex-container">
             <v-col cols="2" v-for="(game, index) in schedule" :key="index" >
-                <v-card class="card" @click.native="goToDetails(game.vTeam.teamId, game.hTeam.teamId)" >
-                    <img class="logo" :src="getTeam(game.vTeam.teamId).logo"/>
-                    <img class="logo" :src="getTeam(game.hTeam.teamId).logo"/>
+                <v-card class="card" @click.native="goToDetails(game.schedule.awayTeam.id, game.schedule.homeTeam.id)" >
+                    <img class="logo" :src="getTeam(game.schedule.awayTeam.id).team.officialLogoImageSrc"/>
+                    <img class="logo" :src="getTeam(game.schedule.homeTeam.id).team.officialLogoImageSrc"/>
                 </v-card>
             </v-col>
         </div>
@@ -15,7 +15,7 @@
 
 <script>
 import PlayersTable from '../components/PlayersTable.vue'
-import scheduleService from '../services/scheduleService'
+import mySportsFeedService from '../services/mySportsFeedService'
 
 export default {
   name: 'Home',
@@ -24,31 +24,33 @@ export default {
   },
   data: function () {
     return {
-      today: new Date().toISOString().slice(0, 10),
-      isScheduleFetched: false,
-      schedule: [],
+      // today: new Date().toISOString().slice(0, 10),
+      today: new Date('2020-01-01T03:24:00').toISOString().slice(0, 10),
       players: []
     }
   },
+  computed: {
+    schedule () {
+      return this.$store.state.schedule[this.today]
+    }
+  },
   mounted () {
-    scheduleService.getGames(this.today.replace(/[-]+/g, '')).then(response => {
-      this.schedule = response.data
-      let p = []
-      this.schedule.forEach(game => {
-        p = [...p, ...this.getTeam(game.vTeam.teamId).players, ...this.getTeam(game.hTeam.teamId).players]
+    this.players = []
+    const homeTeams = this.schedule.map(g => g.schedule.homeTeam.id)
+    const awayTeams = this.schedule.map(g => g.schedule.awayTeam.id)
+
+    mySportsFeedService.getPlayersStats(homeTeams.concat(awayTeams).join(','))
+      .then(response => {
+        this.players = response.data.playerStatsTotals
       })
-      this.players = p
-      this.isScheduleFetched = true
-    })
-      .catch(error => {
-        // handle error
+      .catch(function (error) {
         console.log(error)
       })
   },
   methods: {
     getTeam (teamId) {
       return this.$store.state.teams.find((team) => {
-        return team.teamId === teamId
+        return team.team.id === teamId
       })
     },
     goToDetails (visitorId, homeId) {

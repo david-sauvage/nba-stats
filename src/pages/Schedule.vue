@@ -28,9 +28,9 @@
     </v-col>
 
     <v-col v-for="(game, index) in schedule" :key="index">
-        <Game :awayTeamId="game.visitor"
-              :homeTeamId="game.home"
-              @click.native="goToDetails(game.visitor, game.home)"
+        <Game :awayTeamId="game.schedule.awayTeam.id"
+              :homeTeamId="game.schedule.homeTeam.id"
+              @click.native="goToDetails(game.schedule.awayTeam.id, game.schedule.homeTeam.id)"
               class="game"/>
     </v-col>
     </v-container>
@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     schedule () {
-      return this.$store.state.schedule[this.chosenDate.replace(/[-]+/g, '')]
+      return this.$store.state.schedule[this.chosenDate]
     },
     chosenDate: {
       get () {

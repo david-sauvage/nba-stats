@@ -8,24 +8,28 @@
 <script>
 import Game from '../components/Game.vue'
 import PlayersTable from '../components/PlayersTable.vue'
+import mySportsFeedService from '../services/mySportsFeedService'
 
 export default {
   name: 'GameDetails',
   components: {
     Game, PlayersTable
   },
-  computed: {
-    players () {
-      const awayPlayers = this.$store.state.teams.find((team) => {
-        return team.teamId === this.$route.params.awayTeamId
-      }).players
-
-      const homePlayers = this.$store.state.teams.find((team) => {
-        return team.teamId === this.$route.params.homeTeamId
-      }).players
-
-      return [...awayPlayers, ...homePlayers]
+  data: function () {
+    return {
+      players: []
     }
+  },
+  mounted () {
+    this.players = []
+
+    mySportsFeedService.getPlayersStats(`${this.$route.params.awayTeamId},${this.$route.params.homeTeamId}`)
+      .then(response => {
+        this.players = response.data.playerStatsTotals
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 }
 </script>

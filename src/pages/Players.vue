@@ -4,7 +4,7 @@
             <v-select
                 v-model="selectedTeams"
                 :items="teams"
-                item-text="fullName"
+                item-text="team.city"
                 :return-object="true"
                 chips
                 label="Franchise"
@@ -30,7 +30,7 @@
                     slot-scope="{ item, index }"
                     >
                     <v-chip v-if="index <= 2">
-                        <span>{{ item.fullName }}</span>
+                        <span>{{ item.team.city }}</span>
                     </v-chip>
                     <span
                         v-if="index === 3"
@@ -47,6 +47,7 @@
 
 <script>
 import PlayersTable from '../components/PlayersTable.vue'
+import mySportsFeedService from '../services/mySportsFeedService'
 
 export default {
   name: 'Players',
@@ -54,14 +55,12 @@ export default {
     PlayersTable
   },
   data: () => ({
-    selectedTeams: []
+    selectedTeams: [],
+    players: []
   }),
   computed: {
     teams () {
       return this.$store.state.teams
-    },
-    players () {
-      return Array.from(this.selectedTeams, t => t.players).flat()
     },
     selectedAllTeams () {
       return this.selectedTeams.length === this.teams.length
@@ -73,6 +72,21 @@ export default {
       if (this.selectedAllTeams) return 'check_box'
       if (this.selectedSomeTeams) return 'indeterminate_check_box'
       return 'check_box_outline_blank'
+    }
+  },
+  watch: {
+    selectedTeams: function (newValue) {
+      this.players = []
+      if (newValue.length > 0) {
+        const teamIds = newValue.map(t => t.team.id).join(',')
+        mySportsFeedService.getPlayersStats(teamIds)
+          .then(response => {
+            this.players = response.data.playerStatsTotals
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
     }
   },
   methods: {
