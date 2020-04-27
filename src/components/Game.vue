@@ -25,12 +25,12 @@ export default {
   computed: {
     homeTeam () {
       return this.$store.state.teams.find((team) => {
-        return team.teamId === this.homeTeamId
+        return team.team.id === Number(this.homeTeamId)
       })
     },
     awayTeam () {
       return this.$store.state.teams.find((team) => {
-        return team.teamId === this.awayTeamId
+        return team.team.id === Number(this.awayTeamId)
       })
     }
   }
