@@ -14,6 +14,14 @@
             <template v-slot:item.franchise="{ item }">
                 {{item.team.city}} {{item.team.name}}
             </template>
+            <template v-slot:item.actions="{ item }">
+                <v-icon
+                        small
+                        class="mr-2"
+                        @click="goToPlayers(item)" >
+                    people
+                </v-icon>
+            </template>
         </v-data-table>
     </v-container>
 </template>
@@ -30,7 +38,8 @@ export default {
       { text: 'W', align: 'right', value: 'stats.standings.wins' },
       { text: 'L', align: 'right', value: 'stats.standings.losses' },
       { text: 'Off', align: 'right', value: 'stats.offense.ptsPerGame' },
-      { text: 'Def', align: 'right', value: 'stats.defense.ptsAgainstPerGame' }
+      { text: 'Def', align: 'right', value: 'stats.defense.ptsAgainstPerGame' },
+      { text: '', value: 'actions', sortable: false }
     ],
     sortBy: 'stats.standings.winPct',
     sortDesc: true
@@ -38,6 +47,11 @@ export default {
   computed: {
     teams () {
       return this.$store.state.teams
+    }
+  },
+  methods: {
+    goToPlayers (team) {
+      this.$router.push({ path: '/players', query: { teamIds: team.team.id } })
     }
   }
 }

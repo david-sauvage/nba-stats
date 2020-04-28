@@ -58,6 +58,14 @@ export default {
     selectedTeams: [],
     players: []
   }),
+  created () {
+    if (this.$route.query.teamIds) {
+      const aTeam = this.$store.state.teams.find((team) => {
+        return team.team.id === Number(this.$route.query.teamIds)
+      })
+      this.selectedTeams.push(aTeam)
+    }
+  },
   computed: {
     teams () {
       return this.$store.state.teams
