@@ -4,7 +4,7 @@
             <v-select
                 v-model="selectedTeams"
                 :items="teams"
-                item-text="team.city"
+                :item-text="item => item.team.city +' '+ item.team.name"
                 :return-object="true"
                 chips
                 label="Franchise"
@@ -30,7 +30,7 @@
                     slot-scope="{ item, index }"
                     >
                     <v-chip v-if="index <= 2">
-                        <span>{{ item.team.city }}</span>
+                        <span>{{ item.team.name }}</span>
                     </v-chip>
                     <span
                         v-if="index === 3"
