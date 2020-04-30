@@ -20,16 +20,10 @@ export default {
       players: []
     }
   },
-  mounted () {
+  async mounted () {
     this.players = []
-
-    mySportsFeedService.getPlayersStats(`${this.$route.params.awayTeamId},${this.$route.params.homeTeamId}`)
-      .then(response => {
-        this.players = response.data.playerStatsTotals
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+    const response = await mySportsFeedService.getPlayersStats(this.$store, `${this.$route.params.awayTeamId},${this.$route.params.homeTeamId}`)
+    this.players = response.data.playerStatsTotals
   }
 }
 </script>

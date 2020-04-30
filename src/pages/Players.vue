@@ -83,17 +83,12 @@ export default {
     }
   },
   watch: {
-    selectedTeams: function (newValue) {
+    selectedTeams: async function (newValue) {
       this.players = []
       if (newValue.length > 0) {
         const teamIds = newValue.map(t => t.team.id).join(',')
-        mySportsFeedService.getPlayersStats(teamIds)
-          .then(response => {
-            this.players = response.data.playerStatsTotals
-          })
-          .catch(function (error) {
-            console.log(error)
-          })
+        const response = await mySportsFeedService.getPlayersStats(this.$store, teamIds)
+        this.players = response.data.playerStatsTotals
       }
     }
   },

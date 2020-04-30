@@ -22,6 +22,13 @@
     <v-app-bar  app :clipped-left="clipped" color="primary" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>NBA Stats</v-toolbar-title>
+      <v-progress-linear
+              :active="isLoading"
+              indeterminate
+              absolute
+              bottom
+              color="secondary lighten-1"
+      ></v-progress-linear>
     </v-app-bar>
     <v-content>
       <router-view/>
@@ -72,6 +79,9 @@ export default {
     isDataReady () {
       return this.$store.state.schedule != null &&
               this.$store.state.teams != null
+    },
+    isLoading () {
+      return this.$store.state.isLoading
     }
   }
 }
