@@ -10,6 +10,7 @@ export default {
         { params: {}, headers: HEADERS })
     } catch (error) {
       console.log(error)
+      store.dispatch('DISPLAY_MESSAGE', 'Impossible to retrieve schedule. Please try again later')
     } finally {
       store.dispatch('STOP_LOADING')
     }
@@ -21,6 +22,7 @@ export default {
         { params: {}, headers: HEADERS })
     } catch (error) {
       console.log(error)
+      store.dispatch('DISPLAY_MESSAGE', 'Impossible to retrieve player stats. Please try again later')
     } finally {
       store.dispatch('STOP_LOADING')
     }
@@ -32,6 +34,7 @@ export default {
         { params: {}, headers: HEADERS })
     } catch (error) {
       console.log(error)
+      store.dispatch('DISPLAY_MESSAGE', 'Impossible to retrieve team standings. Please try again later')
     } finally {
       store.dispatch('STOP_LOADING')
     }

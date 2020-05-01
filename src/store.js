@@ -10,7 +10,11 @@ export default new Vuex.Store({
     schedule: null,
     teams: null,
     chosenDate: new Date().toISOString().slice(0, 10),
-    isLoading: false
+    isLoading: false,
+    snackbar: {
+      isDisplayingSnackBar: false,
+      message: ''
+    }
   },
   mutations: {
     setSchedule (state, schedule) {
@@ -24,6 +28,9 @@ export default new Vuex.Store({
     },
     isLoading (state, isLoading) {
       state.isLoading = isLoading
+    },
+    setSnackbar (state, snackbar) {
+      state.snackbar = snackbar
     }
   },
   actions: {
@@ -39,15 +46,21 @@ export default new Vuex.Store({
       }
       commit('setSchedule', schedule)
     },
-    LOAD_TEAMS: async function ({ dispatch, commit }) {
+    LOAD_TEAMS: async function ({ commit }) {
       const response = await mySportsFeedService.getTeamStandings(this)
       commit('setTeams', response.data.teams)
     },
-    START_LOADING: function ({ dispatch, commit }) {
+    START_LOADING: function ({ commit }) {
       commit('isLoading', true)
     },
-    STOP_LOADING: function ({ dispatch, commit }) {
+    STOP_LOADING: function ({ commit }) {
       commit('isLoading', false)
+    },
+    DISPLAY_MESSAGE: function ({ commit }, message) {
+      const snackbar = {}
+      snackbar.isDisplayingSnackBar = true
+      snackbar.message = message
+      commit('setSnackbar', snackbar)
     }
   }
 })

@@ -29,6 +29,7 @@
               bottom
               color="secondary lighten-1"
       ></v-progress-linear>
+      <AppSnackbar></AppSnackbar>
     </v-app-bar>
     <v-content>
       <router-view/>
@@ -38,11 +39,15 @@
 </template>
 
 <script>
-
+import AppSnackbar from './components/AppSnackbar'
 export default {
   name: 'App',
+  components: {
+    AppSnackbar
+  },
   data () {
     return {
+      isDisplayingSnackBar: true,
       clipped: true,
       drawer: true,
       fixed: false,
