@@ -34,18 +34,12 @@ export default {
       return this.$store.state.schedule[this.today]
     }
   },
-  mounted () {
+  async mounted () {
     this.players = []
     const homeTeams = this.schedule.map(g => g.schedule.homeTeam.id)
     const awayTeams = this.schedule.map(g => g.schedule.awayTeam.id)
-
-    mySportsFeedService.getPlayersStats(homeTeams.concat(awayTeams).join(','))
-      .then(response => {
-        this.players = response.data.playerStatsTotals
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+    const response = await mySportsFeedService.getPlayersStats(this.$store, homeTeams.concat(awayTeams).join(','))
+    this.players = response.data.playerStatsTotals
   },
   methods: {
     getTeam (teamId) {
