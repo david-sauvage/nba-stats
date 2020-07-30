@@ -5,6 +5,7 @@ import Schedule from './pages/Schedule.vue'
 import Players from './pages/Players.vue'
 import Teams from './pages/Teams.vue'
 import GameDetails from './pages/GameDetails.vue'
+import PlayerComparison from './pages/PlayerComparison'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/gameDetails/:awayTeamId/:homeTeamId',
       name: 'GameDetails',
       component: GameDetails
+    },
+    {
+      path: '/playerComparison',
+      name: 'PlayerComparison',
+      component: PlayerComparison
     }
   ]
 })

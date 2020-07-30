@@ -14,6 +14,9 @@ export default new Vuex.Store({
     snackbar: {
       isDisplayingSnackBar: false,
       message: ''
+    },
+    playerComparison: {
+      selectedPlayers: []
     }
   },
   mutations: {
@@ -31,6 +34,9 @@ export default new Vuex.Store({
     },
     setSnackbar (state, snackbar) {
       state.snackbar = snackbar
+    },
+    setPlayerComparison (state, playerComparison) {
+      state.playerComparison = playerComparison
     }
   },
   actions: {
@@ -61,6 +67,11 @@ export default new Vuex.Store({
       snackbar.isDisplayingSnackBar = true
       snackbar.message = message
       commit('setSnackbar', snackbar)
+    },
+    COMPARE_PLAYERS: function ({ commit }, players) {
+      const playerComparison = {}
+      playerComparison.selectedPlayers = players
+      commit('setPlayerComparison', playerComparison)
     }
   }
 })
