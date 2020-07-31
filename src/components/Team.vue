@@ -24,7 +24,6 @@
                  {{ team.stats.defense.ptsAgainstPerGame }}
              </v-chip>
          </p>
-
      </v-card-text>
   </v-card>
 </template>

@@ -27,6 +27,18 @@ export default {
       store.dispatch('STOP_LOADING')
     }
   },
+  getPlayersGameLogs: async function (store, playersList) {
+    try {
+      store.dispatch('START_LOADING')
+      return await axios.get(`https://api.mysportsfeeds.com/v2.1/pull/nba/latest/player_gamelogs.json?player=${playersList}`,
+        { params: {}, headers: HEADERS })
+    } catch (error) {
+      console.log(error)
+      store.dispatch('DISPLAY_MESSAGE', 'Impossible to retrieve player game logs. Please try again later')
+    } finally {
+      store.dispatch('STOP_LOADING')
+    }
+  },
   getTeamStandings: async function (store) {
     try {
       store.dispatch('START_LOADING')

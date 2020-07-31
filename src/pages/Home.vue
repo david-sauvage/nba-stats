@@ -24,8 +24,7 @@ export default {
   },
   data: function () {
     return {
-      // today: new Date().toISOString().slice(0, 10),
-      today: new Date('2020-01-01T03:24:00').toISOString().slice(0, 10),
+      today: new Date().toISOString().slice(0, 10),
       players: []
     }
   },
@@ -36,10 +35,12 @@ export default {
   },
   async mounted () {
     this.players = []
-    const homeTeams = this.schedule.map(g => g.schedule.homeTeam.id)
-    const awayTeams = this.schedule.map(g => g.schedule.awayTeam.id)
-    const response = await mySportsFeedService.getPlayersStats(this.$store, homeTeams.concat(awayTeams).join(','))
-    this.players = response.data.playerStatsTotals
+    if (this.schedule) {
+      const homeTeams = this.schedule.map(g => g.schedule.homeTeam.id)
+      const awayTeams = this.schedule.map(g => g.schedule.awayTeam.id)
+      const response = await mySportsFeedService.getPlayersStats(this.$store, homeTeams.concat(awayTeams).join(','))
+      this.players = response.data.playerStatsTotals
+    }
   },
   methods: {
     getTeam (teamId) {

@@ -5,7 +5,21 @@
         :items-per-page=25
         :sort-by.sync=sortBy
         :sort-desc.sync=sortDesc
+        show-select
+        v-model="selectedPlayers"
+        item-key="player.id"
         class=elevation-1>
+
+        <template v-slot:footer>
+            <v-container fluid>
+                <v-col cols="12">
+                    <v-row justify="end">
+                        <v-btn small color="primary" @click="goToPlayerComparison()">Compare players</v-btn>
+                    </v-row>
+                </v-col>
+            </v-container>
+        </template>
+
     </v-data-table>
 </template>
 
@@ -26,7 +40,8 @@ export default {
       { text: 'TTFL', align: 'right', value: 'ttfl' }
     ],
     sortBy: 'ttfl',
-    sortDesc: true
+    sortDesc: true,
+    selectedPlayers: []
   }),
   computed: {
     enrichedPlayers () {
@@ -71,6 +86,10 @@ export default {
       const calcul = pts + oreb + dreb + ast + stl + blck + fg3m + fgm + ftm -
                             (to + (fg3a - fg3m) + (fga - fgm) + (fta - ftm))
       return calcul.toFixed(1)
+    },
+    goToPlayerComparison () {
+      this.$store.dispatch('COMPARE_PLAYERS', this.selectedPlayers)
+      this.$router.push({ path: '/playerComparison' })
     }
   }
 }
